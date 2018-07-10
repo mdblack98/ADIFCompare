@@ -1,0 +1,32 @@
+c:\users\black\documents\visual studio 2015\Projects\ADIFCompare\ADIFCompare\bin\Debug\ADIFCompare.exe.config
+c:\users\black\documents\visual studio 2015\Projects\ADIFCompare\ADIFCompare\bin\Debug\ADIFCompare.exe
+c:\users\black\documents\visual studio 2015\Projects\ADIFCompare\ADIFCompare\bin\Debug\ADIFCompare.pdb
+c:\users\black\documents\visual studio 2015\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.csprojResolveAssemblyReference.cache
+c:\users\black\documents\visual studio 2015\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.Form1.resources
+c:\users\black\documents\visual studio 2015\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.Properties.Resources.resources
+c:\users\black\documents\visual studio 2015\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.csproj.GenerateResource.Cache
+c:\users\black\documents\visual studio 2015\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.exe
+c:\users\black\documents\visual studio 2015\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.pdb
+C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\bin\Debug\ADIFCompare.exe.config
+C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\bin\Debug\ADIFCompare.exe
+C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\bin\Debug\ADIFCompare.pdb
+C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.Form1.resources
+C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.Properties.Resources.resources
+C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.csproj.GenerateResource.Cache
+C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.exe
+C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.pdb
+C:\Users\Black\Dropbox\Projects\ADIFCompare\ADIFCompare\bin\Debug\ADIFCompare.exe.config
+C:\Users\Black\Dropbox\Projects\ADIFCompare\ADIFCompare\bin\Debug\ADIFCompare.exe
+C:\Users\Black\Dropbox\Projects\ADIFCompare\ADIFCompare\bin\Debug\ADIFCompare.pdb
+C:\Users\Black\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.csprojResolveAssemblyReference.cache
+C:\Users\Black\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.Form1.resources
+C:\Users\Black\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.Properties.Resources.resources
+C:\Users\Black\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.csproj.GenerateResource.Cache
+C:\Users\Black\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.exe
+C:\Users\Black\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.pdb
+C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.csproj.CoreCompileInputs.cache
+C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\bin\Debug\ADIFCompare.exe.manifest
+C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\bin\Debug\ADIFCompare.application
+C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.csprojAssemblyReference.cache
+C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.exe.manifest
+C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Debug\ADIFCompare.application
