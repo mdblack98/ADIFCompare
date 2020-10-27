@@ -59,7 +59,6 @@ C:\Users\mdbla\Dropbox\Projects\ADIFCompare\ADIFCompare\bin\Release\System.Memor
 C:\Users\mdbla\Dropbox\Projects\ADIFCompare\ADIFCompare\bin\Release\System.Numerics.Vectors.xml
 C:\Users\mdbla\Dropbox\Projects\ADIFCompare\ADIFCompare\bin\Release\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\mdbla\Dropbox\Projects\ADIFCompare\ADIFCompare\bin\Release\System.Threading.Tasks.Extensions.xml
-C:\Users\mdbla\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Release\ADIFCompare.csprojAssemblyReference.cache
 C:\Users\mdbla\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Release\ADIFCompare.Form1.resources
 C:\Users\mdbla\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Release\ADIFCompare.Properties.Resources.resources
 C:\Users\mdbla\Dropbox\Projects\ADIFCompare\ADIFCompare\obj\Release\ADIFCompare.csproj.GenerateResource.cache
