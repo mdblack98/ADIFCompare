@@ -41,6 +41,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.checkBoxIgnoreMode = new System.Windows.Forms.CheckBox();
             this.checkBoxIgnoreDups = new System.Windows.Forms.CheckBox();
+            this.checkBoxTimeTrim = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // run
@@ -58,9 +59,9 @@
             this.richTextBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.richTextBox1.Location = new System.Drawing.Point(13, 93);
+            this.richTextBox1.Location = new System.Drawing.Point(13, 121);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(546, 284);
+            this.richTextBox1.Size = new System.Drawing.Size(546, 256);
             this.richTextBox1.TabIndex = 5;
             this.richTextBox1.Text = "";
             // 
@@ -116,7 +117,7 @@
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(381, 65);
+            this.textBox3.Location = new System.Drawing.Point(122, 95);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(107, 20);
             this.textBox3.TabIndex = 8;
@@ -125,7 +126,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(273, 69);
+            this.label3.Location = new System.Drawing.Point(14, 99);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 13);
             this.label3.TabIndex = 9;
@@ -151,11 +152,22 @@
             this.checkBoxIgnoreDups.Text = "Ignore dups";
             this.checkBoxIgnoreDups.UseVisualStyleBackColor = true;
             // 
+            // checkBoxTimeTrim
+            // 
+            this.checkBoxTimeTrim.AutoSize = true;
+            this.checkBoxTimeTrim.Location = new System.Drawing.Point(267, 67);
+            this.checkBoxTimeTrim.Name = "checkBoxTimeTrim";
+            this.checkBoxTimeTrim.Size = new System.Drawing.Size(77, 17);
+            this.checkBoxTimeTrim.TabIndex = 12;
+            this.checkBoxTimeTrim.Text = "Trim time 3";
+            this.checkBoxTimeTrim.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(571, 389);
+            this.Controls.Add(this.checkBoxTimeTrim);
             this.Controls.Add(this.checkBoxIgnoreDups);
             this.Controls.Add(this.checkBoxIgnoreMode);
             this.Controls.Add(this.label3);
@@ -170,7 +182,7 @@
             this.Controls.Add(this.run);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "ADIFCompare v1.5.1 W9MDB";
+            this.Text = "ADIFCompare v1.5.4 W9MDB";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,6 +202,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox checkBoxIgnoreMode;
         private System.Windows.Forms.CheckBox checkBoxIgnoreDups;
+        private System.Windows.Forms.CheckBox checkBoxTimeTrim;
     }
 }
 

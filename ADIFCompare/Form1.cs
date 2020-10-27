@@ -5,7 +5,9 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.IO.Pipelines;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -59,14 +61,15 @@ namespace ADIFCompare
             /*
             20140118 / 21:?? 17M  JT65 W2KWO  Duplicate? Why is this a dup?
             */
-            
+
         }
+
 
         int Digits(String s)
         {
             int n = 0;
             char[] array = s.ToCharArray();
-            for(n=0;n<array.Count();++n)
+            for (n = 0; n < array.Count(); ++n)
             {
                 char c = array[n];
                 if (c >= '0' && c <= '9') ++n;
@@ -83,6 +86,7 @@ namespace ADIFCompare
             String timeon = "";
             String band = "";
             String mode = "";
+            String submode = "";
             String stationCallSign = "";
             bool eqsl_qsl_rcvd = false;
             bool lotw_qsl_rcvd = false;
@@ -90,123 +94,145 @@ namespace ADIFCompare
             Char[] delims = { '>', ':' };
             int nlines = 0;
             int ndups = 0;
-            StreamWriter writer = new StreamWriter(filename+".txt");
+            StreamWriter writer = new StreamWriter(filename + ".txt");
             Stopwatch timer1 = new Stopwatch();
-            using (var reader = File.OpenText(filename))
+            bool async = false;
+            //using (var reader = File.OpenText(filename))
+            StreamReader reader;
+            if (async)
+            {
+                FileStream freader = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read,
+                    bufferSize: 4096, useAsync: true);
+                reader = new StreamReader(freader);
+            }
+            else
+            {
+                reader = File.OpenText(filename);
+            }
+
+            using (reader)
             {
                 timer1.Start();
                 while ((tmpline = reader.ReadLine()) != null)
                 {
-
+                    tmpline = tmpline.ToUpper();
                     if (reader.EndOfStream && tmpline.Length == 0)
                     {
                         continue;
                     }
                     if (tmpline.Length < 3) continue;
-                    if (tmpline.Substring(0,1)=="#") continue;
+                    if (tmpline.Substring(0, 1) == "#") continue;
                     if (tmpline.Contains("ADIF_VERS:")) continue;
                     line += tmpline;
-                    if (!line.Contains("<EOR") && !line.Contains("<eor")) continue;
+                    if (!line.Contains("<EOR")) continue;
                     //richTextBox1.AppendText(line);
-                    if (line.Contains("<CALL:")||line.Contains("<call:"))
+                    if (line.Contains("<CALL:"))
                     {
                         //continue;
                         //Regex r = new Regex(@"", RegexOptions.None, TimeSpan.FromMilliseconds(150));
                         //if (line.Contains("NY1S"))
                         //    richTextBox1.AppendText("NY1S");
-                        //int nn = 0;
-                        //if (line.Contains("W1AW/7"))
-                        //{
-                        //    ++nn;
-                        //}
+                        int nn = 0;
+                        if (line.Contains("XE2/W7ZV"))
+                        {
+                            ++nn;
+                        }
                         String[] tokens = line.Split('<');
                         int n = 0;
 
                         foreach (String s in tokens)
                         {
-                            String[] tokens3 = s.ToUpper().Split(':');
+                            String[] tokens3 = s.Split(':');
                             String keyword = "";
                             if (tokens3.Length > 0) keyword = tokens3[0];
-                            if (keyword.Equals("CALL"))
+                            switch (keyword)
                             {
-                                ++n;
-                                String[] tokens4 = s.Split(delims);
-                                call = tokens4[2].TrimStart().TrimEnd();
-                                ++nlines;
-                                if ((nlines%100)==0) label.Text = nlines.ToString();
-                                Application.DoEvents();
-                            }
-                            else if (keyword.Equals("STATION_CALLSIGN"))
-                            {
-                                //++n;
-                                String[] tokens4 = s.Split(delims);
-                                stationCallSign = tokens4[2].TrimStart().TrimEnd();
-                            }
-                            else if (keyword.Equals("TIME_ON"))
-                            {
-                                ++n;
-                                String[] tokens5 = s.Split(delims);
-                                timeon = tokens5[2].TrimStart().Substring(0, 4);
-                                //int hour = int.Parse(timeon.Substring(0,2));
-                                //int min  = int.Parse(timeon.Substring(2,2));
-                                //int whichMinute = 0;
-                                //if (min >= 30) whichMinute = 1;
-                                //else whichMinute = 0;
-                                //timeon = (hour*100 + whichMinute).ToString();
-                            }
-                            else if (keyword.Equals("BAND"))
-                            {
-                                ++n;
-                                String[] tokens6 = s.Split(delims);
-                                band = tokens6[2].TrimStart().ToUpper().TrimEnd();
-                            }
-                            else if (keyword.Equals("MODE"))
-                            {
-                                ++n;
-                                String[] tokens7 = s.Split(delims);
-                                mode = tokens7[2].TrimStart().ToUpper().TrimEnd();
-                                if (mode.Contains("JT65")) mode = "JT65";
-                                if (mode.Contains("PSK")) mode="PSK";
-                                if (checkBoxIgnoreMode.Checked) mode = "ANY";
-                            }
-                            else if (keyword.Equals("QSO_DATE"))
-                            {
-                                ++n;
-                                String[] tokens8 = s.Split(delims);
-                                int ntoken = 2;
-                                if (tokens8[ntoken].Equals("D"))
-                                {
-                                    ++ntoken;
-                                }
-                                qsodate = tokens8[ntoken].TrimStart().TrimEnd();
-                            }
-                            /*
-                            if (keyword.Contains("QSL_RCVD"))
-                            {
-                                String[] tokens9 = s.Split(delims);
-                                 String who = tokens9[0].ToUpper();
-                                if (who.Contains("LOTW"))
-                                {
-                                    lotw_qsl_rcvd = tokens9[2].ToUpper().Trim().Equals("Y") || tokens9[2].ToUpper().Trim().Equals("V");
 
-                                }
-                                else if (who.Contains("EQSL"))
-                                {
-                                    eqsl_qsl_rcvd = tokens9[2].ToUpper().Trim().Equals("Y");
+                                case "CALL":
+                                    ++n;
+                                    String[] tokens4 = s.Split(delims);
+                                    call = tokens4[2].TrimStart().TrimEnd();
+                                    ++nlines;
+                                    if ((nlines % 100) == 0) {
+                                        label.Text = nlines.ToString();
+                                        Application.DoEvents();
+                                    }
+                                    break;
+                                case "STATION_CALLSIGN":
+                                    tokens4 = s.Split(delims);
+                                    stationCallSign = tokens4[2].TrimStart().TrimEnd();
+                                    break;
+                                case "TIME_ON":
+                                    ++n;
+                                    String[] tokens5 = s.Split(delims);
+                                    timeon = tokens5[2].TrimStart().Substring(0, 4);
+                                    if (checkBoxTimeTrim.Checked) timeon = timeon.Substring(0, 3);
+                                    //int hour = int.Parse(timeon.Substring(0,2));
+                                    //int min  = int.Parse(timeon.Substring(2,2));
+                                    //int whichMinute = 0;
+                                    //if (min >= 30) whichMinute = 1;
+                                    //else whichMinute = 0;
+                                    //timeon = (hour*100 + whichMinute).ToString();
+                                    break;
+                                case "BAND":
+                                    ++n;
+                                    String[] tokens6 = s.Split(delims);
+                                    band = tokens6[2].TrimStart().TrimEnd();
+                                    break;
+                                case "MODE":
+                                    ++n;
+                                    String[] tokens7 = s.Split(delims);
+                                    mode = tokens7[2].TrimStart().TrimEnd();
+                                    if (mode.Contains("JT65")) mode = "JT65";
+                                    if (mode.Contains("PSK")) mode = "PSK";
+                                    if (checkBoxIgnoreMode.Checked) mode = "ANY";
+                                    break;
+                                case "SUBMODE":
+                                    String[] tokens8 = s.Split(delims);
+                                    submode = tokens8[2].TrimStart().TrimEnd();
+                                    break;
+                                case "QSO_DATE":
+                                    ++n;
+                                    String[] tokens9 = s.Split(delims);
+                                    int ntoken = 2;
+                                    if (tokens9[ntoken].Equals("D"))
+                                    {
+                                        ++ntoken;
+                                    }
+                                    qsodate = tokens9[ntoken].TrimStart().TrimEnd();
+                                    break;
+                                default:
+                                    break;
+                                    /*
+                                    if (keyword.Contains("QSL_RCVD"))
+                                    {
+                                        String[] tokens9 = s.Split(delims);
+                                         String who = tokens9[0];
+                                        if (who.Contains("LOTW"))
+                                        {
+                                            lotw_qsl_rcvd = tokens9[2].Trim().Equals("Y") || tokens9[2].Trim().Equals("V");
 
-                                }
-                                else
-                                {
-                                    qsl_rcvd = tokens9[2].ToUpper().Trim().Equals("Y");
-                                }
+                                        }
+                                        else if (who.Contains("EQSL"))
+                                        {
+                                            eqsl_qsl_rcvd = tokens9[2].Trim().Equals("Y");
+
+                                        }
+                                        else
+                                        {
+                                            qsl_rcvd = tokens9[2].Trim().Equals("Y");
+                                        }
+                                    }
+                                    */
                             }
-                            */
+                            if (mode.Equals("MFSK") && submode.Equals("FT4")) 
+                                mode = "FT4";
                             bool for_us = true;
                             if (callsignFilter.Length > 0 && !stationCallSign.Equals(callsignFilter)) for_us = false;
                             if (for_us && n >= 5)
                             {
                                 //String key = qsodate + "/" + timeon + "?\t" + band + "\t" +mode + "\t" + call + "\tlotw/eqsl="+lotw_qsl_rcvd+"/"+eqsl_qsl_rcvd;
-                                String key = qsodate + "/" + timeon + "?\t" + band + "\t" +mode + "\t" + call;
+                                String key = qsodate + "/" + timeon + "?\t" + band + "\t" + mode + "\t" + call;
                                 //richTextBox1.AppendText(key + "\n");
                                 //break;
                                 try
@@ -216,7 +242,8 @@ namespace ADIFCompare
                                     {
                                         list.Add(key, 0);
                                     }
-                                    else if (!checkBoxIgnoreDups.Checked) {
+                                    else if (!checkBoxIgnoreDups.Checked)
+                                    {
                                         richTextBox1.AppendText(key + " Duplicate?\n");
                                         ++ndups;
                                     }
@@ -237,10 +264,11 @@ namespace ADIFCompare
             }
             writer.Close();
             timer1.Stop();
-            richTextBox1.AppendText("Elapsed " + timer1.ElapsedMilliseconds / 1000.0+"\n");
+            richTextBox1.AppendText("Elapsed " + timer1.ElapsedMilliseconds / 1000.0 + " seconds\n");
             label.Text = nlines.ToString();
-            richTextBox1.AppendText(ndups + " duplicates to check\n");
-            richTextBox1.AppendText("Lines: " + nlines + "\n");
+            if (ndups == 0) richTextBox1.AppendText("No duplicates within " + filename);
+            else richTextBox1.AppendText(ndups + " duplicates to check\n");
+            richTextBox1.AppendText("QSOs accepted: " + nlines + "\n");
         }
 
         private void Button1_Click(object sender, EventArgs e)
@@ -256,20 +284,20 @@ namespace ADIFCompare
             String file2 = textBox2.Text;
             richTextBox1.AppendText("Processing " + file1 + "\n");
             Application.DoEvents();
-            Char[] delimiters = { '.', '_',' ' };
+            Char[] delimiters = { '.', '_', ' ' };
             filename1 = file1.Split('\\').Last();
             filename1 = filename1.Split(delimiters)[0];
             filename2 = file2.Split('\\').Last();
             filename2 = filename2.Split(delimiters)[0];
             callsignFilter = textBox3.Text;
 
-            AddToList(file1, list1,label1);
+            AddToList(file1, list1, label1);
             richTextBox1.AppendText("===============================\n");
             richTextBox1.AppendText("Processing " + file2 + "\n");
             Application.DoEvents();
-            AddToList(file2, list2,label2);
+            AddToList(file2, list2, label2);
             richTextBox1.AppendText("===============================\n");
-            richTextBox1.AppendText("Extra QSOs in "+file1 + "\n");
+            richTextBox1.AppendText("Extra QSOs in " + file1 + " that are not in "+file2+"\n");
             int n1 = 0;
             foreach (KeyValuePair<String, int> pair in list1)
             {
@@ -278,12 +306,12 @@ namespace ADIFCompare
                 {
                     Application.DoEvents();
                     ++n1;
-                    richTextBox1.AppendText(filename1+" has\t" + pair.Key + "\n");
+                    richTextBox1.AppendText(filename1 + " has\t" + pair.Key + "\n");
                 }
             }
             richTextBox1.AppendText(n1 + " entries need checking\n");
             richTextBox1.AppendText("===============================\n");
-            richTextBox1.AppendText("Extra QSOs in " + file2 + "\n");
+            richTextBox1.AppendText("Extra QSOs in " + file2 + " that are not in "+file1+"\n");
             int n2 = 0;
             foreach (KeyValuePair<String, int> pair in list2)
             {
@@ -291,7 +319,7 @@ namespace ADIFCompare
                 if (!list1.ContainsKey(pair.Key))
                 {
                     Application.DoEvents();
-                    richTextBox1.AppendText(filename2+" has\t" + pair.Key + "\n");
+                    richTextBox1.AppendText(filename2 + " has\t" + pair.Key + "\n");
                     ++n2;
                 }
             }

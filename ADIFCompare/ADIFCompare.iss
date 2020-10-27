@@ -2,16 +2,16 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ADIFCompare"
-#define MyAppVersion "1.2"
+#define MyAppVersion "1.5.3"
 #define MyAppPublisher "W9MDB"
-#define MyAppURL "http://www.qrz.com/db/w9mdb"
+#define MyAppURL "https://www.qrz.com/db/W9MDB"
 #define MyAppExeName "ADIFCompare.exe"
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{5923E3D0-E58C-412A-B44F-4D4BD1025828}
+AppId={{9969BA8D-3758-4B3C-8A33-D0B1CB6DE35E}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 ;AppVerName={#MyAppName} {#MyAppVersion}
@@ -21,8 +21,9 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DisableProgramGroupPage=yes
-OutputBaseFilename=ADIFCompare{#MyAppVersion}
-SetupIconFile=C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\if_rain-abstract-geometric-polygon-eye_1771369.ico
+OutputDir=C:\Users\mdbla\Dropbox\Projects\ADIFCompare\Install
+OutputBaseFilename=ADIFCompareXXX
+SetupIconFile=C:\Users\mdbla\Dropbox\Projects\ADIFCompare\ADIFCompare\cartoon-happy-eyes.ico
 Compression=lzma
 SolidCompression=yes
 
@@ -31,16 +32,15 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
-Name: "quicklaunchicon"; Description: "{cm:CreateQuickLaunchIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked; OnlyBelowVersion: 0,6.1
 
 [Files]
-Source: "C:\Users\mike\Dropbox\Projects\ADIFCompare\ADIFCompare\bin\Release\ADIFCompare.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\mdbla\Dropbox\Projects\ADIFCompare\ADIFCompare\bin\Release\ADIFCompare.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "C:\Users\mdbla\Dropbox\Projects\ADIFCompare\ADIFCompare\bin\Release\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
 Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
-Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: quicklaunchicon
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
