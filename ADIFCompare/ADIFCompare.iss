@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "ADIFCompare"
-#define MyAppVersion "1.5.3"
+#define MyAppVersion "1.5.4"
 #define MyAppPublisher "W9MDB"
 #define MyAppURL "https://www.qrz.com/db/W9MDB"
 #define MyAppExeName "ADIFCompare.exe"
@@ -19,10 +19,10 @@ AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
-DefaultDirName={pf}\{#MyAppName}
+DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 OutputDir=C:\Users\mdbla\Dropbox\Projects\ADIFCompare\Install
-OutputBaseFilename=ADIFCompareXXX
+OutputBaseFilename=ADIFCompare{#MyAppVersion}
 SetupIconFile=C:\Users\mdbla\Dropbox\Projects\ADIFCompare\ADIFCompare\cartoon-happy-eyes.ico
 Compression=lzma
 SolidCompression=yes

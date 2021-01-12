@@ -359,6 +359,7 @@ namespace ADIFCompare
             if (filename.Length > 0)
             {
                 textBox1.Text = filename;
+                label1.Text = "";
             }
         }
 
@@ -368,6 +369,7 @@ namespace ADIFCompare
             if (filename.Length > 0)
             {
                 textBox2.Text = filename;
+                label2.Text = "";
             }
         }
 

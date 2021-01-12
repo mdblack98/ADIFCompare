@@ -49,7 +49,7 @@
             this.run.Location = new System.Drawing.Point(13, 65);
             this.run.Name = "run";
             this.run.Size = new System.Drawing.Size(75, 23);
-            this.run.TabIndex = 5;
+            this.run.TabIndex = 7;
             this.run.Text = "Run";
             this.run.UseVisualStyleBackColor = true;
             this.run.Click += new System.EventHandler(this.Button1_Click);
@@ -62,7 +62,7 @@
             this.richTextBox1.Location = new System.Drawing.Point(13, 121);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(546, 256);
-            this.richTextBox1.TabIndex = 5;
+            this.richTextBox1.TabIndex = 12;
             this.richTextBox1.Text = "";
             // 
             // textBox1
@@ -77,7 +77,7 @@
             this.textBox2.Location = new System.Drawing.Point(95, 39);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(393, 20);
-            this.textBox2.TabIndex = 4;
+            this.textBox2.TabIndex = 5;
             // 
             // button1
             // 
@@ -94,7 +94,7 @@
             this.button2.Location = new System.Drawing.Point(12, 38);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
+            this.button2.TabIndex = 4;
             this.button2.Text = "Browse";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.Button2_Click);
@@ -105,7 +105,7 @@
             this.label1.Location = new System.Drawing.Point(495, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(0, 13);
-            this.label1.TabIndex = 6;
+            this.label1.TabIndex = 3;
             // 
             // label2
             // 
@@ -113,14 +113,14 @@
             this.label2.Location = new System.Drawing.Point(495, 41);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(0, 13);
-            this.label2.TabIndex = 7;
+            this.label2.TabIndex = 6;
             // 
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(122, 95);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(107, 20);
-            this.textBox3.TabIndex = 8;
+            this.textBox3.TabIndex = 11;
             this.textBox3.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
             // 
             // label3
@@ -129,7 +129,7 @@
             this.label3.Location = new System.Drawing.Point(14, 99);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 13);
-            this.label3.TabIndex = 9;
+            this.label3.TabIndex = 0;
             this.label3.Text = "Station Callsign Filter";
             // 
             // checkBoxIgnoreMode
@@ -138,7 +138,7 @@
             this.checkBoxIgnoreMode.Location = new System.Drawing.Point(95, 67);
             this.checkBoxIgnoreMode.Name = "checkBoxIgnoreMode";
             this.checkBoxIgnoreMode.Size = new System.Drawing.Size(85, 17);
-            this.checkBoxIgnoreMode.TabIndex = 10;
+            this.checkBoxIgnoreMode.TabIndex = 8;
             this.checkBoxIgnoreMode.Text = "Ignore mode";
             this.checkBoxIgnoreMode.UseVisualStyleBackColor = true;
             // 
@@ -148,7 +148,7 @@
             this.checkBoxIgnoreDups.Location = new System.Drawing.Point(179, 67);
             this.checkBoxIgnoreDups.Name = "checkBoxIgnoreDups";
             this.checkBoxIgnoreDups.Size = new System.Drawing.Size(82, 17);
-            this.checkBoxIgnoreDups.TabIndex = 11;
+            this.checkBoxIgnoreDups.TabIndex = 9;
             this.checkBoxIgnoreDups.Text = "Ignore dups";
             this.checkBoxIgnoreDups.UseVisualStyleBackColor = true;
             // 
@@ -158,7 +158,7 @@
             this.checkBoxTimeTrim.Location = new System.Drawing.Point(267, 67);
             this.checkBoxTimeTrim.Name = "checkBoxTimeTrim";
             this.checkBoxTimeTrim.Size = new System.Drawing.Size(77, 17);
-            this.checkBoxTimeTrim.TabIndex = 12;
+            this.checkBoxTimeTrim.TabIndex = 10;
             this.checkBoxTimeTrim.Text = "Trim time 3";
             this.checkBoxTimeTrim.UseVisualStyleBackColor = true;
             // 
